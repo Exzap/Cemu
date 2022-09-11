@@ -1,0 +1,20 @@
+name: Compile on push or pull request
+on: 
+  pull_request:
+    paths-ignore:
+      - "*.md"
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    paths-ignore:
+      - "*.md"
+    branches:
+      - main
+
+jobs:
+  call-release-build:
+    uses: ./.github/workflows/build.yml
+    with:
+      deploymode: release
