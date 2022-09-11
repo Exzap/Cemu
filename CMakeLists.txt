@@ -4,9 +4,13 @@ option(PUBLIC_RELEASE "Compile with debug asserts disabled and no console" OFF)
 option(ENABLE_VCPKG "Enable the vcpkg package manager" ON)
 set(EXPERIMENTAL_VERSION "" CACHE STRING "") # used by CI script to set experimental version
 
+
+
 if (EXPERIMENTAL_VERSION)
   add_definitions(-DEMULATOR_VERSION_MINOR=${EXPERIMENTAL_VERSION})
 endif()
+
+
 
 if (ENABLE_VCPKG)
 	set(VCPKG_OVERLAY_PORTS "${CMAKE_CURRENT_LIST_DIR}/dependencies/vcpkg_overlay_ports")
