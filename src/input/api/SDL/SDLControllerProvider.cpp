@@ -29,13 +29,15 @@ SDLControllerProvider::SDLControllerProvider()
 	SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_JOY_CONS, "1");
 	SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_STADIA, "1");
 	SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_STEAM, "1");
+	SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_STEAMDECK, "1");
 	SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_LUNA, "1");
 
 	if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC | SDL_INIT_EVENTS) < 0) 
 		throw std::runtime_error(fmt::format("couldn't initialize SDL: {}", SDL_GetError()));
 		
 
-	if (SDL_GameControllerEventState(SDL_ENABLE) < 0) {
+	if (SDL_GameControllerEventState(SDL_ENABLE) < 0)
+	{
 		cemuLog_log(LogType::Force, "Couldn't enable SDL gamecontroller event polling: {}", SDL_GetError());
 	}
 
