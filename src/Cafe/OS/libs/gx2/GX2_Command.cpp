@@ -114,7 +114,7 @@ namespace GX2
 	// current position of where the GPU is reading from. Updated via a memory write command submitted to the GPU
 	uint32 GX2Command_GetPoolGPUReadIndex()
 	{
-		std::atomic_ref<MEMPTR<uint32be>> _readPtr(s_commandState->gpuCommandReadPtr);
+		stdx::atomic_ref<MEMPTR<uint32be>> _readPtr(s_commandState->gpuCommandReadPtr);
 		MEMPTR<uint32be> currentReadPtr = _readPtr.load();
 		cemu_assert_debug(currentReadPtr);
 		return (uint32)(currentReadPtr.GetPtr() - s_commandState->commandPoolBase.GetPtr());
@@ -125,7 +125,7 @@ namespace GX2
 		uint64 retiredTimeStamp = GX2GetRetiredTimeStamp();
 		retiredTimeStamp += 1;
 		// but cant be higher than the submission timestamp
-		std::atomic_ref<uint64be> _lastSubmissionTime(s_commandState->lastSubmissionTime);
+		stdx::atomic_ref<uint64be> _lastSubmissionTime(s_commandState->lastSubmissionTime);
 		uint64 submissionTimeStamp = _lastSubmissionTime.load();
 		if (retiredTimeStamp > submissionTimeStamp)
 			retiredTimeStamp = submissionTimeStamp;
@@ -294,7 +294,7 @@ namespace GX2
 
 	uint64 GX2GetLastSubmittedTimeStamp()
 	{
-		std::atomic_ref<uint64be> _lastSubmissionTime(s_commandState->lastSubmissionTime);
+		stdx::atomic_ref<uint64be> _lastSubmissionTime(s_commandState->lastSubmissionTime);
 		return _lastSubmissionTime.load();
 	}
 

@@ -30,7 +30,7 @@ namespace TCL
 		{
 			MEMPTR<uint32> b;
 			// this is the timestamp of the last buffer that was retired by the GPU
-			std::atomic_ref<uint64be> retireTimestamp(s_tclStatePPC->gpuRetireMarker);
+			stdx::atomic_ref<uint64be> retireTimestamp(s_tclStatePPC->gpuRetireMarker);
 			*timestampOut = retireTimestamp.load();
 			return 0;
 		}
@@ -48,7 +48,7 @@ namespace TCL
 		{
 			while ( true )
 			{
-				std::atomic_ref<uint64be> retireTimestamp(s_tclStatePPC->gpuRetireMarker);
+				stdx::atomic_ref<uint64be> retireTimestamp(s_tclStatePPC->gpuRetireMarker);
 				uint64 currentTimestamp = retireTimestamp.load();
 				if (currentTimestamp >= waitTs)
 					return 0;

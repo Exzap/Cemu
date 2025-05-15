@@ -509,20 +509,20 @@ LatteCMDPtr LatteCP_itMemWrite(LatteCMDPtr cmd, uint32 nWords)
 	if (word1 == 0x40000)
 	{
 		// write U32
-		std::atomic_ref<uint32be> atomicRef(*memPtr);
+		stdx::atomic_ref<uint32be> atomicRef(*memPtr);
 		atomicRef.store(word2);
 	}
 	else if (word1 == 0x00000)
 	{
 		// write U64
 		// note: The U32s are swapped here, but needs verification. Also, it seems like the two U32 halves are written independently and the U64 as a whole is not atomic -> investiagte
-		std::atomic_ref<uint64be> atomicRef(*(uint64be*)memPtr);
+		stdx::atomic_ref<uint64be> atomicRef(*(uint64be*)memPtr);
 		atomicRef.store(((uint64le)word2 << 32) | word3);
 	}
 	else if (word1 == 0x20000)
 	{
 		// write U64 (little endian)
-		std::atomic_ref<uint64le> atomicRef(*(uint64le*)memPtr);
+		stdx::atomic_ref<uint64le> atomicRef(*(uint64le*)memPtr);
 		atomicRef.store(((uint64le)word3 << 32) | word2);
 	}
 	else
@@ -543,7 +543,7 @@ LatteCMDPtr LatteCP_itEventWriteEOP(LatteCMDPtr cmd, uint32 nWords)
 
 	if (word0 == 0x504 && (word2&0x40000000)) // todo - figure out the flags
 	{
-		std::atomic_ref<uint64be> atomicRef(*(uint64be*)memory_getPointerFromPhysicalOffset(word1));
+		stdx::atomic_ref<uint64be> atomicRef(*(uint64be*)memory_getPointerFromPhysicalOffset(word1));
 		uint64 val = ((uint64)word4 << 32) | word3;
 		atomicRef.store(val);
 	}
@@ -554,8 +554,8 @@ LatteCMDPtr LatteCP_itEventWriteEOP(LatteCMDPtr cmd, uint32 nWords)
 	if (triggerInterrupt)
 	{
 		// todo - timestamp interrupt
-		TCL::TCLGPUNotifyNewRetirementTimestamp();
 	}
+	TCL::TCLGPUNotifyNewRetirementTimestamp();
 	return cmd;
 }
 
