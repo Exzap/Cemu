@@ -118,12 +118,33 @@ void dmaeExport_DMAEGetRetiredTimeStamp(PPCInterpreter_t* hCPU)
 	osLib_returnFromFunction64(hCPU, dmaeRetiredTimestamp);
 }
 
-
-void dmae_load()
+namespace dmae
 {
-	osLib_addFunction("dmae", "DMAECopyMem", dmaeExport_DMAECopyMem);
-	osLib_addFunction("dmae", "DMAEFillMem", dmaeExport_DMAEFillMem);
-	osLib_addFunction("dmae", "DMAEWaitDone", dmaeExport_DMAEWaitDone);
-	osLib_addFunction("dmae", "DMAESemaphore", dmaeExport_DMAESemaphore);
-	osLib_addFunction("dmae", "DMAEGetRetiredTimeStamp", dmaeExport_DMAEGetRetiredTimeStamp);
+	class : public COSModule
+	{
+		public:
+		std::string_view GetName() override
+		{
+			return "dmae";
+		}
+
+		virtual void RPLMapped()
+		{
+			osLib_addFunction("dmae", "DMAECopyMem", dmaeExport_DMAECopyMem);
+			osLib_addFunction("dmae", "DMAEFillMem", dmaeExport_DMAEFillMem);
+			osLib_addFunction("dmae", "DMAEWaitDone", dmaeExport_DMAEWaitDone);
+			osLib_addFunction("dmae", "DMAESemaphore", dmaeExport_DMAESemaphore);
+			osLib_addFunction("dmae", "DMAEGetRetiredTimeStamp", dmaeExport_DMAEGetRetiredTimeStamp);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSDMAEModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSDMAEModule;
+	}
 }

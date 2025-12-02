@@ -1,6 +1,7 @@
 #pragma once
 
 #include "util/ChunkedHeap/ChunkedHeap.h"
+#include "Cafe/OS/common/OSCommon.h" // todo - reconsider if COSModule should be part of RPL headers instead of having a cross-dependency
 
 #define RPL_MODULE_NAME_LENGTH	64
 #define RPL_MODULE_PATH_LENGTH	256
@@ -231,7 +232,8 @@ struct RPLDependency
 	char filepath[RPL_MODULE_PATH_LENGTH];
 	bool loadAttempted;
 	bool isCafeOSModule; // name is a known Cafe OS RPL
-	RPLModule* rplLoaderContext; // context of loaded module, can be nullptr for HLE COS modules
+	RPLModule* rplLoaderContext{}; // context of loaded module, can be nullptr for HLE COS modules
+	class COSModule* rplHLEModule{}; // set if this is a HLE module
 	sint32 referenceCount;
 	uint32 coreinitHandle; // fake handle for coreinit
 	sint16 tlsModuleIndex; // tls module index assigned to this dependency

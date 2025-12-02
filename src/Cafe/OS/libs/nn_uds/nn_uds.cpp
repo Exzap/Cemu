@@ -15,10 +15,29 @@ void nnUdsExport___sti___11_uds_Api_cpp_f5d9abb2(PPCInterpreter_t* hCPU)
 	osLib_returnFromFunction(hCPU, memory_getVirtualOffsetFromPointer(udsWorkspace));
 }
 
-/*
- * Load UDS functions
- */
-void nnUds_load()
+namespace nn::uds
 {
-	osLib_addFunction("nn_uds", "__sti___11_uds_Api_cpp_f5d9abb2", nnUdsExport___sti___11_uds_Api_cpp_f5d9abb2);
+	class : public COSModule
+	{
+		public:
+		std::string_view GetName() override
+		{
+			return "nn_uds";
+		}
+
+		virtual void RPLMapped()
+		{
+			osLib_addFunction("nn_uds", "__sti___11_uds_Api_cpp_f5d9abb2", nnUdsExport___sti___11_uds_Api_cpp_f5d9abb2);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSnnUdsModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSnnUdsModule;
+	}
 }

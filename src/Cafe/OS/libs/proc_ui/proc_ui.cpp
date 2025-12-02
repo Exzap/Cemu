@@ -877,32 +877,58 @@ namespace proc_ui
 
 	void load()
 	{
-		reset();
 
-		cafeExportRegister("proc_ui", ProcUIInit, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIInitEx, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIShutdown, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIIsRunning, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIInForeground, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIInShutdown, LogType::ProcUi);
-
-		cafeExportRegister("proc_ui", ProcUIRegisterCallbackCore, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIRegisterCallback, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIRegisterBackgroundCallback, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIClearCallbacks, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUISetSaveCallback, LogType::ProcUi);
-
-		cafeExportRegister("proc_ui", ProcUISetCallbackStackSize, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUICalcMemorySize, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUISetMemoryPool, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUISetBucketStorage, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUISetMEM1Storage, LogType::ProcUi);
-
-		cafeExportRegister("proc_ui", ProcUIDrawDoneRelease, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUIProcessMessages, LogType::ProcUi);
-		cafeExportRegister("proc_ui", ProcUISubProcessMessages, LogType::ProcUi);
-
-		// manually call rpl_entry for now
-		rpl_entry(-1, RplEntryReason::Loaded);
 	}
+
+	class : public COSModule
+	{
+		public:
+		std::string_view GetName() override
+		{
+			return "proc_ui";
+		}
+
+		virtual void RPLMapped()
+		{
+			reset();
+
+			cafeExportRegister("proc_ui", ProcUIInit, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIInitEx, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIShutdown, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIIsRunning, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIInForeground, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIInShutdown, LogType::ProcUi);
+
+			cafeExportRegister("proc_ui", ProcUIRegisterCallbackCore, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIRegisterCallback, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIRegisterBackgroundCallback, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIClearCallbacks, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUISetSaveCallback, LogType::ProcUi);
+
+			cafeExportRegister("proc_ui", ProcUISetCallbackStackSize, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUICalcMemorySize, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUISetMemoryPool, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUISetBucketStorage, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUISetMEM1Storage, LogType::ProcUi);
+
+			cafeExportRegister("proc_ui", ProcUIDrawDoneRelease, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUIProcessMessages, LogType::ProcUi);
+			cafeExportRegister("proc_ui", ProcUISubProcessMessages, LogType::ProcUi);
+
+			// todo - move to separate entry point?
+			// manually call rpl_entry for now
+			rpl_entry(-1, RplEntryReason::Loaded);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSprocuiModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSprocuiModule;
+	}
+
 };

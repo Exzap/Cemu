@@ -29,12 +29,31 @@ namespace avm
 		return true;  // returns 1 (true) if new state was applied successfully?
 	}
 
-	void Initialize()
+	class : public COSModule
 	{
-		cafeExportRegister("avm", AVMIsHDCPAvailable, LogType::Placeholder);
-		cafeExportRegister("avm", AVMIsHDCPOn, LogType::Placeholder);
-		cafeExportRegister("avm", AVMGetAnalogContentsProtectionEnable, LogType::Placeholder);
-		cafeExportRegister("avm", AVMIsAnalogContentsProtectionOn, LogType::Placeholder);
-		cafeExportRegister("avm", AVMSetAnalogContentsProtectionEnable, LogType::Placeholder);
+		public:
+		std::string_view GetName() override
+		{
+			return "avm";
+		}
+
+		virtual void RPLMapped()
+		{
+			cafeExportRegister("avm", AVMIsHDCPAvailable, LogType::Placeholder);
+			cafeExportRegister("avm", AVMIsHDCPOn, LogType::Placeholder);
+			cafeExportRegister("avm", AVMGetAnalogContentsProtectionEnable, LogType::Placeholder);
+			cafeExportRegister("avm", AVMIsAnalogContentsProtectionOn, LogType::Placeholder);
+			cafeExportRegister("avm", AVMSetAnalogContentsProtectionEnable, LogType::Placeholder);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSavmModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSavmModule;
 	}
 }

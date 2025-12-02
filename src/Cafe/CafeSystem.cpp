@@ -384,8 +384,8 @@ void cemu_initForGame()
 	ppcCyclesSince2000 = theTime * (uint64)ESPRESSO_CORE_CLOCK;
 	ppcCyclesSince2000TimerClock = ppcCyclesSince2000 / 20ULL;
 	PPCTimer_start();
-	// this must happen after the RPX/RPL files are mapped to memory (coreinit sets up heaps so that they don't overwrite RPX/RPL data)
-	osLib_load();
+	// load coreinit first
+	RPLLoader_LoadCoreinit();
 	// link all modules
 	uint32 linkTimeStart = GetTickCount();
 	RPLLoader_UpdateDependencies();
@@ -602,21 +602,6 @@ namespace CafeSystem
 		iosu::iosuAcp_init();
 		iosu::nim::Initialize();
 		iosu::odm::Initialize();
-		// init Cafe OS
-		avm::Initialize();
-		drmapp::Initialize();
-		TCL::Initialize();
-		nn::cmpt::Initialize();
-		nn::ccr::Initialize();
-		nn::temp::Initialize();
-		nn::aoc::Initialize();
-		nn::pdm::Initialize();
-		snd::user::Initialize();
-		H264::Initialize();
-		snd_core::Initialize();
-		mic::Initialize();
-		nfc::Initialize();
-		ntag::Initialize();
 		// init hardware register interfaces
 		HW_SI::Initialize();
 	}

@@ -27,11 +27,31 @@ namespace drmapp
 		return 1;
 	}
 
-	void Initialize()
+	class : public COSModule
 	{
-		cafeExportRegisterFunc(NupChkIsFinished, "drmapp", "NupChkIsFinished__3RplFv", LogType::Placeholder);
-		cafeExportRegisterFunc(PatchChkIsFinished, "drmapp", "PatchChkIsFinished__3RplFv", LogType::Placeholder);
-		cafeExportRegisterFunc(AocChkIsFinished, "drmapp", "AocChkIsFinished__3RplFv", LogType::Placeholder);
-		cafeExportRegisterFunc(TicketChkIsFinished, "drmapp", "TicketChkIsFinished__3RplFv", LogType::Placeholder);
+		public:
+		std::string_view GetName() override
+		{
+			return "drmapp";
+		}
+
+		virtual void RPLMapped()
+		{
+			cafeExportRegisterFunc(NupChkIsFinished, "drmapp", "NupChkIsFinished__3RplFv", LogType::Placeholder);
+			cafeExportRegisterFunc(PatchChkIsFinished, "drmapp", "PatchChkIsFinished__3RplFv", LogType::Placeholder);
+			cafeExportRegisterFunc(AocChkIsFinished, "drmapp", "AocChkIsFinished__3RplFv", LogType::Placeholder);
+			cafeExportRegisterFunc(TicketChkIsFinished, "drmapp", "TicketChkIsFinished__3RplFv", LogType::Placeholder);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSdrmappModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSdrmappModule;
 	}
+
 } // namespace drmapp

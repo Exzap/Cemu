@@ -1,3 +1,5 @@
+#include <zlib.h>
+
 #include "Cafe/OS/common/OSCommon.h"
 #include "Cafe/Filesystem/fsc.h"
 #include "Cafe/OS/RPL/rpl.h"
@@ -9,12 +11,10 @@
 #include "Cafe/GraphicPack/GraphicPack2.h"
 #include "util/ChunkedHeap/ChunkedHeap.h"
 
-#include <zlib.h>
-
 #include "util/crypto/crc32.h"
 #include "config/ActiveSettings.h"
 #include "Cafe/OS/libs/coreinit/coreinit_DynLoad.h"
-#include "WindowSystem.h"
+#include "COSModule.h"
 
 class PPCCodeHeap : public VHeap
 {
@@ -1906,6 +1906,17 @@ bool RPLLoader_IsKnownCafeOSModule(std::string_view name)
 	return s_systemModules556.contains(nameLower);
 }
 
+COSModule* RPLLoader_GetHLECafeOSModule(std::string_view moduleName)
+{
+	std::span<COSModule*> cosModules = GetCOSModules();
+	for (auto& module : cosModules)
+	{
+		if (boost::iequals(module->GetName(), moduleName))
+			return module;
+	}
+	return nullptr;
+}
+
 // increment reference counter for module
 void RPLLoader_AddDependency(const char* name)
 {
@@ -1941,6 +1952,7 @@ void RPLLoader_AddDependency(const char* name)
 	newDependency->coreinitHandle = rplLoader_currentHandleCounter;
 	newDependency->tlsModuleIndex = rplLoader_currentTlsModuleIndex;
 	newDependency->isCafeOSModule = RPLLoader_IsKnownCafeOSModule(moduleName);
+	newDependency->rplHLEModule = RPLLoader_GetHLECafeOSModule(moduleName);
 	rplLoader_currentTlsModuleIndex++; // todo - delay handle and tls allocation until the module is actually loaded. It may not exist
 	rplLoader_currentHandleCounter++;
 	if (rplLoader_currentTlsModuleIndex == 0x7FFF)
@@ -2075,9 +2087,16 @@ bool RPLLoader_LoadFromVirtualPath(RPLDependency* dependency, char* filePath)
 	return false;
 }
 
+std::span<COSModule*> GetCOSModules();
+
 void RPLLoader_LoadDependency(RPLDependency* dependency)
 {
-	dependency->loadAttempted = true;
+	// if its a HLE module then notify that it has been mapped
+	if (dependency->rplHLEModule)
+	{
+		dependency->rplHLEModule->RPLMapped();
+		return;
+	}
 	// check if module is already loaded
 	for (sint32 i = 0; i < rplModuleCount; i++)
 	{
@@ -2116,8 +2135,7 @@ void RPLLoader_LoadDependency(RPLDependency* dependency)
 		if (fileData)
 		{
 			cemuLog_log(LogType::Force, "Loading RPL: /cafeLibs/{}", dependency->filepath);
-			dependency->rplLoaderContext = RPLLoader_LoadFromMemory(fileData->data(), fileData->size(),
-																	dependency->filepath);
+			dependency->rplLoaderContext = RPLLoader_LoadFromMemory(fileData->data(), fileData->size(), dependency->filepath);
 			return;
 		}
 	}
@@ -2143,6 +2161,10 @@ void RPLLoader_UpdateDependencies()
 					RPLLoader_UnloadModule(dependency->rplLoaderContext);
 					dependency->rplLoaderContext = nullptr;
 				}
+				else if (dependency->rplHLEModule)
+				{
+					cemu_assert_unimplemented(); // todo. RPL unloaded
+				}
 				// remove from dependency list
 				rplDependencyList.erase(rplDependencyList.begin()+idx);
 				idx--;
@@ -2152,18 +2174,31 @@ void RPLLoader_UpdateDependencies()
 			else if (!dependency->loadAttempted)
 			{
 				// load
-				if (dependency->rplLoaderContext == nullptr)
-				{
-					RPLLoader_LoadDependency(dependency);
-					repeat = true;
-					idx++;
-					break;
-				}
+				dependency->loadAttempted = true;
+				RPLLoader_LoadDependency(dependency);
+				repeat = true;
+				idx++;
+				break;
 			}
 			idx++;
 		}
 	}
 	RPLLoader_Link();
+}
+
+void RPLLoader_LoadCoreinit()
+{
+	RPLLoader_AddDependency("coreinit");
+	for (auto& dep : rplDependencyList)
+	{
+		if (strcmp(dep->modulename, "coreinit") == 0)
+		{
+			dep->loadAttempted = true;
+			RPLLoader_LoadDependency(dep);
+			return;
+		}
+	}
+	cemu_assert_suspicious();
 }
 
 void RPLLoader_SetMainModule(RPLModule* rplLoaderContext)

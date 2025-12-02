@@ -242,16 +242,35 @@ namespace camera
 		g_cameraCounter = 0;
 	}
 
-	void load()
+	class : public COSModule
 	{
-		reset();
-		cafeExportRegister("camera", CAMGetMemReq, LogType::Placeholder);
-		cafeExportRegister("camera", CAMCheckMemSegmentation, LogType::Placeholder);
-		cafeExportRegister("camera", CAMInit, LogType::Placeholder);
-		cafeExportRegister("camera", CAMExit, LogType::Placeholder);
-		cafeExportRegister("camera", CAMOpen, LogType::Placeholder);
-		cafeExportRegister("camera", CAMClose, LogType::Placeholder);
-		cafeExportRegister("camera", CAMSubmitTargetSurface, LogType::Placeholder);
+		public:
+		std::string_view GetName() override
+		{
+			return "camera";
+		}
+
+		virtual void RPLMapped()
+		{
+			reset();
+			cafeExportRegister("camera", CAMGetMemReq, LogType::Placeholder);
+			cafeExportRegister("camera", CAMCheckMemSegmentation, LogType::Placeholder);
+			cafeExportRegister("camera", CAMInit, LogType::Placeholder);
+			cafeExportRegister("camera", CAMExit, LogType::Placeholder);
+			cafeExportRegister("camera", CAMOpen, LogType::Placeholder);
+			cafeExportRegister("camera", CAMClose, LogType::Placeholder);
+			cafeExportRegister("camera", CAMSubmitTargetSurface, LogType::Placeholder);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COScameraModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COScameraModule;
 	}
 }
 

@@ -16,9 +16,28 @@ namespace nn::temp
 		osLib_returnFromFunction(hCPU, 0);
 	}
 
-	void Initialize()
+	class : public COSModule
 	{
-		osLib_addFunction("nn_temp", "TEMPCreateAndInitTempDir", nnTempExport_TEMPCreateAndInitTempDir);
+		public:
+		std::string_view GetName() override
+		{
+			return "nn_temp";
+		}
+
+		virtual void RPLMapped()
+		{
+			osLib_addFunction("nn_temp", "TEMPCreateAndInitTempDir", nnTempExport_TEMPCreateAndInitTempDir);
+		};
+
+		virtual void RPLUnmapped()
+		{
+
+		}
+	}s_COSnnTempModule;
+
+	COSModule* GetModule()
+	{
+		return &s_COSnnTempModule;
 	}
 };
 

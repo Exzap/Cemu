@@ -164,15 +164,34 @@ namespace nn
 			osLib_returnFromFunction(hCPU, 1);
 		}
 
-		void load()
-		{
-			// this module is used by:
-			// Daily Log app
-			// Download Manager app
-			// and possibly other system titles?
+		// this module is used by:
+		// Daily Log app
+		// Download Manager app
+		// and possibly other system titles?
 
-			osLib_addFunction("nn_idbe", "DownloadIconFile__Q2_2nn4idbeFPvULUsb", export_DownloadIconFile);
-			osLib_addFunction("nn_idbe", "DecryptIconFile__Q2_2nn4idbeFPvPCv", export_DecryptIconFile);
+		class : public COSModule
+		{
+			public:
+			std::string_view GetName() override
+			{
+				return "nn_idbe";
+			}
+
+			virtual void RPLMapped()
+			{
+				osLib_addFunction("nn_idbe", "DownloadIconFile__Q2_2nn4idbeFPvULUsb", export_DownloadIconFile);
+				osLib_addFunction("nn_idbe", "DecryptIconFile__Q2_2nn4idbeFPvPCv", export_DecryptIconFile);
+			};
+
+			virtual void RPLUnmapped()
+			{
+
+			}
+		}s_COSnnIdbeModule;
+
+		COSModule* GetModule()
+		{
+			return &s_COSnnIdbeModule;
 		}
 
 	}
