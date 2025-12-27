@@ -888,7 +888,7 @@ namespace proc_ui
 			return "proc_ui";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			reset();
 
@@ -918,9 +918,11 @@ namespace proc_ui
 			// todo - move to separate entry point?
 			// manually call rpl_entry for now
 			rpl_entry(-1, RplEntryReason::Loaded);
+
+			todo - make this dynamically called via COSModule
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

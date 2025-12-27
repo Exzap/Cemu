@@ -625,7 +625,7 @@ namespace H264
 			return "h264";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("h264", H264DECCheckMemSegmentation, LogType::H264);
 			cafeExportRegister("h264", H264DECMemoryRequirement, LogType::H264);
@@ -650,7 +650,7 @@ namespace H264
 			cafeExportRegister("h264", H264DECCheckDecunitLength, LogType::H264);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

@@ -112,7 +112,7 @@ namespace nn
 				return "nn_sl";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				nn::sl::WhiteListAccessor::InitVTable();
 				nn::sl::WhiteListAccessor::ctor(nn::sl::s_defaultWhiteListAccessor);
@@ -120,7 +120,7 @@ namespace nn
 				cafeExportRegisterFunc(nn::sl::GetDefaultWhiteListAccessor, "nn_sl", "GetDefaultWhiteListAccessor__Q2_2nn2slFv", LogType::NN_SL);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

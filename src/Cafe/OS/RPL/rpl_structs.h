@@ -1,7 +1,6 @@
 #pragma once
 
 #include "util/ChunkedHeap/ChunkedHeap.h"
-#include "Cafe/OS/common/OSCommon.h" // todo - reconsider if COSModule should be part of RPL headers instead of having a cross-dependency
 
 #define RPL_MODULE_NAME_LENGTH	64
 #define RPL_MODULE_PATH_LENGTH	256

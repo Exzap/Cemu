@@ -35,7 +35,7 @@ namespace drmapp
 			return "drmapp";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegisterFunc(NupChkIsFinished, "drmapp", "NupChkIsFinished__3RplFv", LogType::Placeholder);
 			cafeExportRegisterFunc(PatchChkIsFinished, "drmapp", "PatchChkIsFinished__3RplFv", LogType::Placeholder);
@@ -43,7 +43,7 @@ namespace drmapp
 			cafeExportRegisterFunc(TicketChkIsFinished, "drmapp", "TicketChkIsFinished__3RplFv", LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

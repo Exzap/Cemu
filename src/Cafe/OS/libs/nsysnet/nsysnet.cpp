@@ -2226,7 +2226,7 @@ namespace nsysnet
 			return "nsysnet";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nsysnet", inet_ntop, LogType::Socket);
 
@@ -2286,7 +2286,7 @@ namespace nsysnet
 			osLib_addFunction("nsysnet", "NSSLExportInternalClientCertificate", nsysnet::export_NSSLExportInternalClientCertificate);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

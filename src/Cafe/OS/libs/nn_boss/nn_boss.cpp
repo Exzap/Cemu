@@ -1202,7 +1202,7 @@ namespace nn::boss
 			return "nn_boss";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			OSInitMutexEx(&nn::boss::g_mutex, nullptr);
 
@@ -1338,7 +1338,7 @@ namespace nn::boss
 			cafeExportRegisterFunc(nn::boss::NsData::Seek, "nn_boss", "Seek__Q3_2nn4boss6NsDataFLQ3_2nn4boss12PositionBase", LogType::NN_BOSS);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

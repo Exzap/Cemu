@@ -1186,7 +1186,7 @@ namespace snd_user
 			return "snd_user";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			/* snd_user */
 			cafeExportRegister("snd_user", MIXInit, LogType::SoundAPI);
@@ -1220,7 +1220,7 @@ namespace snd_user
 			cafeExportRegister("snd_user", AXFXMultiChReverbCallback, LogType::SoundAPI);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}
@@ -1234,7 +1234,7 @@ namespace snd_user
 			return "snduser2";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			/* snduser2 */
 			cafeExportRegister("snduser2", MIXInit, LogType::SoundAPI);
@@ -1269,7 +1269,7 @@ namespace snd_user
 			cafeExportRegister("snduser2", AXFXMultiChReverbCallback, LogType::SoundAPI);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

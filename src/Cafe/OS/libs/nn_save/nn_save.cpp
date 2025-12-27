@@ -782,7 +782,7 @@ namespace save
 			return "nn_save";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nn_save", SAVEInit, LogType::Save);
 			cafeExportRegister("nn_save", SAVEInitSaveDir, LogType::Save);
@@ -831,7 +831,7 @@ namespace save
 			cafeExportRegister("nn_save", SAVEOpenDirOtherNormalApplicationVariationAsync, LogType::Save);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 			ResetToDefaultState();
 		}

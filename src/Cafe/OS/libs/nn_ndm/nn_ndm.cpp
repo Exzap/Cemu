@@ -82,7 +82,7 @@ namespace nn
 				return "nn_ndm";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				for(size_t i=0; i<NUM_DAEMONS; i++)
 					s_daemonStatus[i] = DAEMON_STATUS::RUNNING;
@@ -96,7 +96,7 @@ namespace nn
 				cafeExportRegisterFunc(ResumeDaemons, "nn_ndm", "ResumeDaemons__Q2_2nn3ndmFUi", LogType::Placeholder);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

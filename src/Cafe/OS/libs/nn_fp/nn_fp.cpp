@@ -766,7 +766,7 @@ namespace nn
 				return "nn_fp";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				g_fp.initCounter = 0;
 				g_fp.isAdminMode = false;
@@ -831,7 +831,7 @@ namespace nn
 				cafeExportRegisterFunc(AcceptFriendRequestAsync, "nn_fp", "AcceptFriendRequestAsync__Q2_2nn2fpFULPFQ2_2nn6ResultPv_vPv", LogType::NN_FP);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

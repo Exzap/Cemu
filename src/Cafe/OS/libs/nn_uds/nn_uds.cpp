@@ -25,12 +25,12 @@ namespace nn::uds
 			return "nn_uds";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nn_uds", "__sti___11_uds_Api_cpp_f5d9abb2", nnUdsExport___sti___11_uds_Api_cpp_f5d9abb2);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

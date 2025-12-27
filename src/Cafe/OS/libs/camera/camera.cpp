@@ -250,7 +250,7 @@ namespace camera
 			return "camera";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			reset();
 			cafeExportRegister("camera", CAMGetMemReq, LogType::Placeholder);
@@ -262,7 +262,7 @@ namespace camera
 			cafeExportRegister("camera", CAMSubmitTargetSurface, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

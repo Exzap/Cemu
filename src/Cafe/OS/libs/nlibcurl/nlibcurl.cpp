@@ -1511,7 +1511,7 @@ CURLcode curl_global_init_mem(uint32 flags, MEMPTR<curl_malloc_callback> malloc_
 			return "nlibcurl";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nlibcurl", curl_global_init_mem, LogType::nlibcurl);
 			cafeExportRegister("nlibcurl", curl_global_init, LogType::nlibcurl);
@@ -1545,7 +1545,7 @@ CURLcode curl_global_init_mem(uint32 flags, MEMPTR<curl_malloc_callback> malloc_
 			osLib_addFunction("nlibcurl", "curl_easy_pause", export_curl_easy_pause);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

@@ -638,7 +638,7 @@ namespace ntag
 			return "ntag";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("ntag", NTAGInit, LogType::NTAG);
 			cafeExportRegister("ntag", NTAGInitEx, LogType::NTAG);
@@ -653,7 +653,7 @@ namespace ntag
 			cafeExportRegister("ntag", NTAGFormat, LogType::NTAG);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

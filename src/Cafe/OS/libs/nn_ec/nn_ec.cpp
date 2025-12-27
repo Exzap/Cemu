@@ -28,12 +28,12 @@ namespace nn::ec
 			return "nn_ec";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nn_ec", "__ct__Q3_2nn2ec5MoneyFPCcN21", nnEcExport___ct__Q3_2nn2ec5MoneyFPCcN21);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

@@ -1169,7 +1169,7 @@ namespace vpad
 			return "vpad";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("vpad", VPADSetBtnRepeat, LogType::InputAPI);
 			cafeExportRegister("vpad", VPADSetSamplingCallback, LogType::InputAPI);
@@ -1218,7 +1218,7 @@ namespace vpad
 			osLib_addFunction("vpad", "VPADSetGyroDirReviseParam", vpadExport_VPADSetGyroDirReviseParam);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

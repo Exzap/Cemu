@@ -680,7 +680,7 @@ namespace sysapp
 			return "nsysapp";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("sysapp", "_SYSLaunchMiiStudio", sysappExport__SYSLaunchMiiStudio);
 			osLib_addFunction("sysapp", "_SYSGetMiiStudioArgs", sysappExport__SYSGetMiiStudioArgs);
@@ -702,7 +702,7 @@ namespace sysapp
 			sysapp::load();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

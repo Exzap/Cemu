@@ -693,7 +693,7 @@ namespace nn::act
 			return "nn_act";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nn_act", "Initialize__Q2_2nn3actFv", nnActExport_Initialize);
 
@@ -763,7 +763,7 @@ namespace nn::act
 
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

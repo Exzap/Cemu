@@ -310,7 +310,7 @@ namespace coreinit
 			return "coreinit";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			coreinit::InitializeCore();
 			coreinit::InitializeSchedulerLock();
@@ -378,7 +378,7 @@ namespace coreinit
 			InitializeAsyncCallback();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

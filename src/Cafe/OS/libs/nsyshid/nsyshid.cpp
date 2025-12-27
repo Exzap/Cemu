@@ -952,7 +952,7 @@ namespace nsyshid
 			return "nsyshid";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nsyshid", "HIDAddClient", export_HIDAddClient);
 			osLib_addFunction("nsyshid", "HIDDelClient", export_HIDDelClient);
@@ -972,7 +972,7 @@ namespace nsyshid
 			AttachDefaultBackends();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

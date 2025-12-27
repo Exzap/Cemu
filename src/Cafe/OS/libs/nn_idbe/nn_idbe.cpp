@@ -177,13 +177,13 @@ namespace nn
 				return "nn_idbe";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				osLib_addFunction("nn_idbe", "DownloadIconFile__Q2_2nn4idbeFPvULUsb", export_DownloadIconFile);
 				osLib_addFunction("nn_idbe", "DecryptIconFile__Q2_2nn4idbeFPvPCv", export_DecryptIconFile);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

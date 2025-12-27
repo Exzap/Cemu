@@ -37,13 +37,13 @@ namespace nlibnss
 			return "nlibnss";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nlibnss", NSSSignatureGetSignatureLength, LogType::Placeholder);
 			cafeExportRegister("nlibnss", NSSExportDeviceCertChain, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

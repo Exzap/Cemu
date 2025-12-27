@@ -24,12 +24,12 @@ namespace nn::temp
 			return "nn_temp";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nn_temp", "TEMPCreateAndInitTempDir", nnTempExport_TEMPCreateAndInitTempDir);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

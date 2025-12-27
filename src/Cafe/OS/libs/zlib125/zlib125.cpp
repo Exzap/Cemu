@@ -374,7 +374,7 @@ namespace zlib
 			return "zlib125";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("zlib125", "inflateInit2_", zlib125Export_inflateInit2_);
 			osLib_addFunction("zlib125", "inflateInit_", zlib125Export_inflateInit_);
@@ -396,7 +396,7 @@ namespace zlib
 			osLib_addFunction("zlib125", "compressBound", zlib125Export_compressBound);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

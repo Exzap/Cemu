@@ -292,7 +292,7 @@ namespace nn::ac
 			return "nn_ac";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("nn_ac", "GetAssignedAddress__Q2_2nn2acFPUl", nnAcExport_GetAssignedAddress);
 			osLib_addFunction("nn_ac", "GetAssignedSubnet__Q2_2nn2acFPUl", nnAcExport_GetAssignedSubnet);
@@ -306,7 +306,7 @@ namespace nn::ac
 			nn_ac::load();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 			cemu_assert_unimplemented();
 		}

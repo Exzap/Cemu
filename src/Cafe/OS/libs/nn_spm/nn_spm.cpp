@@ -140,7 +140,7 @@ namespace nn
 				return "nn_spm";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				cafeExportRegisterFunc(GetDefaultExtendedStorageVolumeId, "nn_spm", "GetDefaultExtendedStorageVolumeId__Q2_2nn3spmFv", LogType::Placeholder);
 				cafeExportRegisterFunc(GetExtendedStorageIndex, "nn_spm", "GetExtendedStorageIndex__Q2_2nn3spmFPQ3_2nn3spm12StorageIndex", LogType::Placeholder);
@@ -153,7 +153,7 @@ namespace nn
 				cafeExportRegisterFunc(WaitStateUpdated, "nn_spm", "WaitStateUpdated__Q2_2nn3spmFPUL", LogType::Placeholder);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

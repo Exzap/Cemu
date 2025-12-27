@@ -157,7 +157,7 @@ namespace nn
 				return "nn_aoc";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				cafeExportRegister("nn_aoc", AOC_CalculateWorkBufferSize, LogType::NN_AOC);
 				cafeExportRegister("nn_aoc", AOC_ListTitle, LogType::NN_AOC);
@@ -167,7 +167,7 @@ namespace nn
 				cafeExportRegister("nn_aoc", AOC_GetPurchaseInfo, LogType::NN_AOC);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

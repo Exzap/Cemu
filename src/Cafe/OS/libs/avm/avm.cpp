@@ -37,7 +37,7 @@ namespace avm
 			return "avm";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("avm", AVMIsHDCPAvailable, LogType::Placeholder);
 			cafeExportRegister("avm", AVMIsHDCPOn, LogType::Placeholder);
@@ -46,7 +46,7 @@ namespace avm
 			cafeExportRegister("avm", AVMSetAnalogContentsProtectionEnable, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

@@ -17,12 +17,12 @@ namespace nn::ccr
 			return "nn_ccr";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nn_ccr", CCRSysCaffeineBootCheck, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

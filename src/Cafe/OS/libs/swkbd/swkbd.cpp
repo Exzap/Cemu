@@ -632,7 +632,7 @@ namespace swkbd
 			return "swkbd";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("swkbd", "SwkbdCreate__3RplFPUcQ3_2nn5swkbd10RegionTypeUiP8FSClient", swkbdExport_SwkbdCreate);
 			osLib_addFunction("swkbd", "SwkbdGetStateKeyboard__3RplFv", swkbdExport_SwkbdGetStateKeyboard);
@@ -650,7 +650,7 @@ namespace swkbd
 			osLib_addFunction("swkbd", "SwkbdIsNeedCalcSubThreadPredict__3RplFv", swkbdExport_SwkbdIsNeedCalcSubThreadPredict);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

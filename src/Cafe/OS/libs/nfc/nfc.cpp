@@ -646,7 +646,7 @@ namespace nfc
 			return "nfc";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nfc", NFCInit, LogType::NFC);
 			cafeExportRegister("nfc", NFCInitEx, LogType::NFC);
@@ -663,7 +663,7 @@ namespace nfc
 			cafeExportRegister("nfc", NFCWrite, LogType::NFC);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

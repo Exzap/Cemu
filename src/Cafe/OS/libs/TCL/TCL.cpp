@@ -156,7 +156,7 @@ namespace TCL
 			return "tcl";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("TCL", TCLSubmitToRing, LogType::Placeholder);
 			cafeExportRegister("TCL", TCLTimestamp, LogType::Placeholder);
@@ -167,7 +167,7 @@ namespace TCL
 			coreinit::OSInitEvent(s_updateRetirementEvent.GetPtr(), coreinit::OSEvent::EVENT_STATE::STATE_NOT_SIGNALED, coreinit::OSEvent::EVENT_MODE::MODE_AUTO);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

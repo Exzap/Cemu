@@ -2163,7 +2163,7 @@ void RPLLoader_UpdateDependencies()
 				}
 				else if (dependency->rplHLEModule)
 				{
-					cemu_assert_unimplemented(); // todo. RPL unloaded
+					dependency->rplHLEModule->RPLUnmapped();
 				}
 				// remove from dependency list
 				rplDependencyList.erase(rplDependencyList.begin()+idx);

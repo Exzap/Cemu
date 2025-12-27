@@ -39,7 +39,7 @@ namespace nn
 				return "nn_pdm";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				cafeExportRegisterFunc(GetPlayDiaryMaxLength, "nn_pdm", "GetPlayDiaryMaxLength__Q2_2nn3pdmFPi", LogType::NN_PDM);
 				cafeExportRegisterFunc(GetPlayStatsMaxLength, "nn_pdm", "GetPlayStatsMaxLength__Q2_2nn3pdmFPi", LogType::NN_PDM);
@@ -47,7 +47,7 @@ namespace nn
 				cafeExportRegisterFunc(GetPlayDiary, "nn_pdm", "GetPlayDiary__Q2_2nn3pdmFPiPQ3_2nn3pdm9PlayDiaryiT3", LogType::NN_PDM);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

@@ -128,7 +128,7 @@ namespace dmae
 			return "dmae";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("dmae", "DMAECopyMem", dmaeExport_DMAECopyMem);
 			osLib_addFunction("dmae", "DMAEFillMem", dmaeExport_DMAEFillMem);
@@ -137,7 +137,7 @@ namespace dmae
 			osLib_addFunction("dmae", "DMAEGetRetiredTimeStamp", dmaeExport_DMAEGetRetiredTimeStamp);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

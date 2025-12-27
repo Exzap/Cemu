@@ -281,7 +281,7 @@ namespace nn
 				return "nn_nim";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				osLib_addFunction("nn_nim", "NeedsNetworkUpdate__Q2_2nn3nimFPb", export_NeedsNetworkUpdate);
 				osLib_addFunction("nn_nim", "GetUpdatePackageProgress__Q2_2nn3nimFPQ3_2nn3nim21UpdatePackageProgress", export_GetUpdatePackageProgress);
@@ -306,7 +306,7 @@ namespace nn
 				osLib_addFunction("nn_nim", "CalculateTitleInstallSize__Q2_2nn3nimFPLRCQ3_2nn3nim22TitlePackageTaskConfigPCUsUi", export_CalculateTitleInstallSize);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 
 			}

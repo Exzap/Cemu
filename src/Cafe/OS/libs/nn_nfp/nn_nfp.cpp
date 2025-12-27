@@ -1048,7 +1048,7 @@ namespace nn::nfp
 			return "nn_nfp";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			nnNfp_load(); // legacy interface, update these to use cafeExportRegister / cafeExportRegisterFunc
 
@@ -1057,7 +1057,7 @@ namespace nn::nfp
 			cafeExportRegisterFunc(nn::nfp::GetNfpReadOnlyInfo, "nn_nfp", "GetNfpReadOnlyInfo__Q2_2nn3nfpFPQ3_2nn3nfp12ReadOnlyInfo", LogType::NN_NFP);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

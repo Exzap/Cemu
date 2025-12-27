@@ -26,13 +26,13 @@ namespace nn::cmpt
 			return "nn_cmpt";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nn_cmpt", CMPTAcctGetPcConf, LogType::Placeholder);
 			cafeExportRegister("nn_cmpt", CMPTGetDataSize, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

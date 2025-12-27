@@ -774,7 +774,7 @@ namespace padscore
 			return "padscore";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("padscore", WPADIsMplsAttached, LogType::InputAPI);
 			cafeExportRegister("padscore", WPADGetAccGravityUnit, LogType::InputAPI);
@@ -815,7 +815,7 @@ namespace padscore
 			osLib_addFunction("padscore", "WPADSetCallbackByKPAD", padscore::export_WPADSetCallbackByKPAD);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

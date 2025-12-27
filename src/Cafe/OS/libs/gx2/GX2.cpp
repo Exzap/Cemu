@@ -316,7 +316,7 @@ namespace GX2
 			return "gx2";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("gx2", "GX2GetContextStateDisplayList", gx2Export_GX2GetContextStateDisplayList);
 
@@ -393,7 +393,7 @@ namespace GX2
 			GX2::GX2MiscInit();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

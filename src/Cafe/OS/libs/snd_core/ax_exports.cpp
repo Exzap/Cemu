@@ -593,7 +593,7 @@ namespace snd_core
 			return "snd_core";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			AXResetToDefaultState();
 			cafeExportRegisterFunc(sndcore1_AXInit, "snd_core", "AXInit", LogType::SoundAPI);
@@ -647,7 +647,7 @@ namespace snd_core
 			RegisterVoiceFunctions();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 			cemu_assert_unimplemented();
 		}
@@ -661,7 +661,7 @@ namespace snd_core
 			return "sndcore2";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegisterFunc(sndcore2_AXInitWithParams, "sndcore2", "AXInitWithParams", LogType::SoundAPI);
 			cafeExportRegisterFunc(sndcore2_AXInit, "sndcore2", "AXInit", LogType::SoundAPI);
@@ -732,7 +732,7 @@ namespace snd_core
 			RegisterVoiceFunctions();
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 			cemu_assert_unimplemented();
 		}

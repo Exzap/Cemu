@@ -465,7 +465,7 @@ namespace mic
 			return "mic";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			osLib_addFunction("mic", "MICInit", micExport_MICInit);
 			osLib_addFunction("mic", "MICOpen", micExport_MICOpen);
@@ -476,7 +476,7 @@ namespace mic
 			osLib_addFunction("mic", "MICSetDataConsumed", micExport_MICSetDataConsumed);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

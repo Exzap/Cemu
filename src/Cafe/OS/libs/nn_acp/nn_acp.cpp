@@ -343,7 +343,7 @@ namespace acp
 			return "nn_acp";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nn_acp", ACPCheckApplicationDeviceEmulation, LogType::Placeholder);
 
@@ -373,7 +373,7 @@ namespace acp
 			osLib_addFunction("nn_acp", "ACPConvertNetworkTimeToOSCalendarTime", export_ACPConvertNetworkTimeToOSCalendarTime);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

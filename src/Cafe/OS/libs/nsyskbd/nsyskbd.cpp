@@ -58,13 +58,13 @@ namespace nsyskbd
 			return "nsyskbd";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			cafeExportRegister("nsyskbd", KBDGetChannelStatus, LogType::Placeholder);
 			cafeExportRegister("nsyskbd", KBDGetKey, LogType::Placeholder);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 
 		}

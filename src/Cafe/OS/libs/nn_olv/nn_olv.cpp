@@ -119,7 +119,7 @@ namespace nn
 				return "nn_olv";
 			}
 
-			virtual void RPLMapped()
+			void RPLMapped() override
 			{
 				g_ReportTypes = 0;
 				g_IsOnlineMode = false;
@@ -148,7 +148,7 @@ namespace nn
 				cafeExportRegisterFunc(UploadedPostData_GetPostId, "nn_olv", "GetPostId__Q3_2nn3olv16UploadedPostDataCFv", LogType::NN_OLV);
 			};
 
-			virtual void RPLUnmapped()
+			void RPLUnmapped() override
 			{
 				OfflineDB_Shutdown();
 			}

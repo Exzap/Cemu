@@ -500,7 +500,7 @@ namespace erreula
 			return "erreula";
 		}
 
-		virtual void RPLMapped()
+		void RPLMapped() override
 		{
 			g_errEula.errEulaInstance.reset();
 
@@ -528,7 +528,7 @@ namespace erreula
 			osLib_addFunction("erreula", "ErrEulaDisappearHomeNixSign__3RplFv", export_DisappearHomeNixSign);
 		};
 
-		virtual void RPLUnmapped()
+		void RPLUnmapped() override
 		{
 			cemu_assert_unimplemented();
 		}
